@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" th:href="@{/img/icon.png}">
+    <title>Game Play</title>
+</head>
+<body>
+
+    <div id="body-container" class="d-flex justify-content-center flex-column">
+        <div class="text-center">
+            <h4 class="d-inline-block text-secondary">ROOM ID: </h4>
+            <h4 class="d-inline-block" th:text="${gameplay.getId()}">343</h4>
+        </div>
+        <div class="header d-flex justify-content-around border-bottom align-items-center py-2">
+            <div class="">
+                <h5 class="text-secondary d-inline-block">Player 1: </h5>
+                <h5 id="first-player" class="fw-bold ps-2 m-0 d-inline-block" th:text="${player1.getName()}"></h5>
+            </div>
+            <div class="">
+                <h5 class="text-secondary d-inline-block">Player 2: </h5>
+                <h5 id="second-player" class="fw-bold ps-2 m-0 d-inline-block" th:text="${player2.getName()}"></h5>
+            </div>
+        </div>
+        <div class="main-wrapper shadow shadow-md m-auto mt-5 p-3">
+            <div class="robusta">
+                <div class="gameplay-wrapper pt-5 border-end border-2">
+                    <div class="m-auto p-3 gameplay-content  mb-3 border">
+                        
+                    </div>
+                    <div class="m-auto gameplay-chat align-items-center d-flex justify-content-between p-2 border">
+                        <input class="gameplay-input w-100 me-4" type="text" placeholder="Enter your answer">
+                        <button class="btn btn-dark">Send</button>
+                    </div>
+                </div>
+                <div class="chat-wrapper pt-5">
+                    <div class="m-auto p-3 chat-content mb-3 border" id="chat-content">
+<!--                        <div class="mb-2 chat-element" style="font-size: 14px;">-->
+<!--                            <span class="fw-bold">5:08</span>-->
+<!--                            <span class="fw-bold me-2 text-success">DucPA: </span>-->
+<!--                            <span>Nhanh lên ông</span>-->
+<!--                        </div>-->
+<!--                        <div class="mb-2 chat-element" style="font-size: 14px;">-->
+<!--                            <span class="fw-bold">5:08</span>-->
+<!--                            <span class="fw-bold me-2 text-danger">THUYPT: </span>-->
+<!--                            <span>OK</span>-->
+<!--                        </div>-->
+                    </div>
+                    <div class="m-auto chat-chat border align-items-center d-flex justify-content-between p-2">
+                        <input id="chat-input" class="chat-input w-100 me-2" type="text" placeholder="Enter your message">
+                        <div class="">
+                            <img th:src="@{/img/send-icon.png}" alt="" style="width: 28px; cursor: pointer;" onclick="addNewMessage()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+
+<script th:src="@{/js/gameplay.js}"></script>
+</body>
+</html>

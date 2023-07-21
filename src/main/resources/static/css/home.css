@@ -1,0 +1,48 @@
+.main-wrapper{
+    margin-top: 5vh;
+    width: 80vw;
+    height: 80vh;
+    background-color: white;
+}
+.header{
+    height: 10%;
+}
+.robusta{
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+.gameplay-wrapper{
+    height: 100%;
+    width: 70%;
+    padding: 12px 0 12px 12px;
+}
+
+.gameplay-content{
+    width: 80%;
+    height: 80%;
+    overflow-y: scroll;
+}
+.gameplay-chat{
+    width: 80%;
+}
+.gameplay-input{
+    height: 40px;
+    padding: 4px;
+}
+.chat-wrapper{    
+    padding: 12px 0 12px 12px;  
+    height: 100%;
+    width: 30%;  
+}
+.chat-content{
+    width: 80%;
+    height: 80%;
+    overflow-y: scroll;
+}
+.chat-chat{
+    width: 80%;
+}
+.chat-input{
+    height: 30px;
+}

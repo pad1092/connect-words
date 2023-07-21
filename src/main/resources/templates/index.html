@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" th:href="@{/img/icon.png}">
+    <title>Victoria's Secret</title>
+</head>
+<body class="align-items-center">
+    <div class="shadow shadow-md w-50 m-auto bg-white boder" style="height: 300px; margin-top: 20vh !important;" >
+        <div class="py-3 text-center">
+            <h4 class="d-inline-block">Your name: </h4>
+            <h5 id="player-name" class="d-inline-block"></h5>
+        </div>
+        <div class="d-flex m-auto" style="width: 400px; padding-top: 40px !important;">
+            <input maxlength="10" id="name-inp" class="input form-control flex-1 me-2 d-inline-block"  type="text" placeholder="Enter your name..." oninput="inputingName(value)">
+            <input class="ms-1 me-2" type="color" name="" id="color-inp" style="height: 40px;" onchange="changeColor(value)">
+            
+        </div>
+        <div class="text-center mt-2" style="height: 50px;">
+            <span style="display: none;" id="warning-inp" class="m-auto text-danger">Please enter your name!</span>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-outline-secondary" onclick="submitName()">Submit</button>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script th:src="@{/js/index.js}"></script>
+</body>
+</html>
