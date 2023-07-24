@@ -41,4 +41,10 @@ public class GamePlayController {
         model.addAttribute("gameplay", gameplay);
         return "gameplay";
     }
+
+    @GetMapping("/gameplay/{id}/{word}")
+    public void sendWords(@PathVariable("id") Long idGameplay, @PathVariable("word") String word, HttpSession session){
+        service.handleSendingWords(idGameplay, word, session);
+
+    }
 }

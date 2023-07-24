@@ -32,7 +32,6 @@ function submitName(){
 function sendToServer (nameVal){
     let color = document.getElementById('color-inp').value.replace("#", "");
     let url = PATH_API + `/new-player/${nameVal}/${color}`
-    console.log(url)
     $.get(url, function (response){
         window.location.href = "/lobby";
     })

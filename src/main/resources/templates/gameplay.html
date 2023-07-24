@@ -14,55 +14,51 @@
     <div id="body-container" class="d-flex justify-content-center flex-column">
         <div class="text-center">
             <h4 class="d-inline-block text-secondary">ROOM ID: </h4>
-            <h4 class="d-inline-block" th:text="${gameplay.getId()}">343</h4>
+            <h4 class="d-inline-block" th:text="${gameplay.getId()}" id="room-id">343</h4>
         </div>
-        <div class="header d-flex justify-content-around border-bottom align-items-center py-2">
+        <div class="header d-flex justify-content-around border-bottom align-items-center py-2" th:attrprepend="yourself=${player2.getId()}">
             <div class="">
                 <h5 class="text-secondary d-inline-block">Player 1: </h5>
-                <h5 id="first-player" class="fw-bold ps-2 m-0 d-inline-block" th:text="${player1.getName()}"></h5>
+                <h5 id="first-player" th:attr="playerId=${player1.getId()}, color=${player1.getColor()}" class="fw-bold ps-2 m-0 d-inline-block" th:text="${player1.getName()}"
+                    th:styleappend="'color:#'+${player1.getColor()}"></h5>
             </div>
+            <h6 id="direction" class="text-center text-primary fw-bold"></h6>
             <div class="">
                 <h5 class="text-secondary d-inline-block">Player 2: </h5>
-                <h5 id="second-player" class="fw-bold ps-2 m-0 d-inline-block" th:text="${player2.getName()}"></h5>
+                <h5 id="second-player" th:attr="playerId=${player2.getId()}, color=${player2.getColor()}" class="fw-bold ps-2 m-0 d-inline-block" th:text="${player2.getName()}"
+                    th:styleappend="'color:#'+${player2.getColor()}"></h5>
             </div>
         </div>
         <div class="main-wrapper shadow shadow-md m-auto mt-5 p-3">
             <div class="robusta">
                 <div class="gameplay-wrapper pt-5 border-end border-2">
-                    <div class="m-auto p-3 gameplay-content  mb-3 border">
+                    <div class="m-auto p-3 gameplay-content  mb-3 border" id="gameplay-content">
                         
                     </div>
                     <div class="m-auto gameplay-chat align-items-center d-flex justify-content-between p-2 border">
-                        <input class="gameplay-input w-100 me-4" type="text" placeholder="Enter your answer">
-                        <button class="btn btn-dark">Send</button>
+                        <input id="gameplay-input" class="gameplay-input w-100 me-4" type="text" placeholder="Enter your answer">
+                        <button id="gameplay-btn" class="btn btn-dark" onclick="sendWordsToServer()">Send</button>
                     </div>
                 </div>
                 <div class="chat-wrapper pt-5">
                     <div class="m-auto p-3 chat-content mb-3 border" id="chat-content">
-<!--                        <div class="mb-2 chat-element" style="font-size: 14px;">-->
-<!--                            <span class="fw-bold">5:08</span>-->
-<!--                            <span class="fw-bold me-2 text-success">DucPA: </span>-->
-<!--                            <span>Nhanh lên ông</span>-->
-<!--                        </div>-->
-<!--                        <div class="mb-2 chat-element" style="font-size: 14px;">-->
-<!--                            <span class="fw-bold">5:08</span>-->
-<!--                            <span class="fw-bold me-2 text-danger">THUYPT: </span>-->
-<!--                            <span>OK</span>-->
-<!--                        </div>-->
                     </div>
                     <div class="m-auto chat-chat border align-items-center d-flex justify-content-between p-2">
                         <input id="chat-input" class="chat-input w-100 me-2" type="text" placeholder="Enter your message">
                         <div class="">
-                            <img th:src="@{/img/send-icon.png}" alt="" style="width: 28px; cursor: pointer;" onclick="addNewMessage()">
+                            <img th:src="@{/img/send-icon.png}" alt="" style="width: 28px; cursor: pointer;" onclick="sendMessageToServer()">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js" integrity="sha512-1QvjE7BtotQjkq8PxLeF6P46gEpBRXuskzIVgjFpekzFVF4yjRgrQvTG1MTOJ3yQgvTteKAcO7DSZI92+u/yZw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
-<script th:src="@{/js/gameplay.js}"></script>
+    <script th:src="@{/js/gameplay.js}"></script>
 </body>
 </html>

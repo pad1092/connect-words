@@ -7,10 +7,7 @@ import com.pad.connectwords.controller.GamePlayController;
 import com.pad.connectwords.service.GameplayService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,5 +37,20 @@ public class GameplayRestcontroller {
     @GetMapping("/join-game/{id}")
     public boolean joinGame(@PathVariable("id") Long idGame, HttpSession session){
         return gameplayService.joinGame(idGame, session);
+    }
+    @GetMapping("/gameplay/{id}/start")
+    public void startGame(@PathVariable("id") Long idGame) throws InterruptedException {
+        Thread.sleep(1000);
+        System.out.println("Sleep");
+        gameplayService.handleSocketStartGame(idGame);
+    }
+    @PostMapping("/gameplay/{id}/chat")
+    public void chatGame(@PathVariable("id") Long gameId, @RequestBody String content , HttpSession session){
+        gameplayService.handleChat(gameId, session, content);
+    }
+
+    @PostMapping("/gameplay/{id}/words")
+    public void wordsGame(@PathVariable("id") Long gameId, @RequestBody String content , HttpSession session){
+        gameplayService.handleWords(gameId, session, content);
     }
 }

@@ -2,8 +2,11 @@ package com.pad.connectwords.service;
 
 import com.pad.connectwords.ConnectWordsApplication;
 import com.pad.connectwords.Entity.Gameplay;
+import com.pad.connectwords.Entity.Message;
 import com.pad.connectwords.Entity.Player;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,6 +15,10 @@ import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class GameplayService {
+    private static final String GAMEPLAY_DES = "/gameplay/room/";
+    @Autowired
+    SimpMessagingTemplate simpMessagingTemplate;
+
     public Gameplay createNewGame(Player hostPlayer){
         Gameplay gameplay = new Gameplay (Gameplay.generateId(),  hostPlayer, null, "Waiting");
         ConnectWordsApplication.listGameplay.add(gameplay);
@@ -29,6 +36,7 @@ public class GameplayService {
         }
         return res;
     }
+
     public boolean exitGameProcess(Gameplay gameplay, Player exitPlayer){
         Player host = gameplay.getHost();
         Player player = gameplay.getPlayer();
@@ -49,6 +57,7 @@ public class GameplayService {
             return false;
         gameplay.setPlayer((Player) session.getAttribute("player"));
         gameplay.setStatus("Full");
+        handleSocketJoinGame(id, session);
         return true;
     }
 
@@ -58,4 +67,71 @@ public class GameplayService {
         return false;
     }
 
+    public void handleSendingWords(Long idGame, String word, HttpSession session){
+        Player sender = (Player) session.getAttribute("player");
+        Gameplay gameplay = getGameplayById(idGame);
+        Player receiver = gameplay.getHost().getId() == sender.getId() ? gameplay.getPlayer() : gameplay.getHost();
+
+        Message message = new Message();
+        message.setMessage(word);
+        message.setToWhom(receiver);
+        message.setFromWho(sender);
+        message.setType(Message.MesssageType.GAME);
+
+        addMessageToQueue(GAMEPLAY_DES + idGame, message);
+    }
+    public void handleSocketJoinGame(Long idGame, HttpSession session){
+        Player sender = (Player) session.getAttribute("player");
+        Gameplay gameplay = getGameplayById(idGame);
+        Player receiver = gameplay.getHost().getId() == sender.getId() ? gameplay.getPlayer() : gameplay.getHost();
+
+        Message message = new Message();
+        message.setMessage("A player joined game");
+        message.setToWhom(receiver);
+        message.setFromWho(sender);
+        message.setType(Message.MesssageType.JOIN);
+
+        addMessageToQueue(GAMEPLAY_DES + idGame, message);
+    }
+
+    public void handleSocketStartGame(Long idGame){
+        Message message = new Message();
+        message.setType(Message.MesssageType.START);
+
+        addMessageToQueue(GAMEPLAY_DES + idGame, message);
+    }
+
+    public void handleChat(Long idGame, HttpSession session, String content){
+        System.out.println(content);
+        Player sender = (Player) session.getAttribute("player");
+        Gameplay gameplay = getGameplayById(idGame);
+        Player receiver = gameplay.getHost().getId() == sender.getId() ? gameplay.getPlayer() : gameplay.getHost();
+
+        Message message = new Message();
+        message.setMessage(content);
+        message.setToWhom(receiver);
+        message.setFromWho(sender);
+        message.setType(Message.MesssageType.CHAT);
+
+        addMessageToQueue(GAMEPLAY_DES + idGame, message);
+    }
+
+    public void handleWords(Long idGame, HttpSession session, String content){
+        Player sender = (Player) session.getAttribute("player");
+        Gameplay gameplay = getGameplayById(idGame);
+        Player receiver = gameplay.getHost().getId() == sender.getId() ? gameplay.getPlayer() : gameplay.getHost();
+
+        Message message = new Message();
+        message.setMessage(content);
+        message.setToWhom(receiver);
+        message.setFromWho(sender);
+        message.setType(Message.MesssageType.GAME);
+
+        addMessageToQueue(GAMEPLAY_DES + idGame, message);
+    }
+
+
+    private void addMessageToQueue(String destination, Message message){
+        simpMessagingTemplate.convertAndSend(destination, message);
+    }
 }
