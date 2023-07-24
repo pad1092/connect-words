@@ -5,10 +5,10 @@ import com.pad.connectwords.Entity.Gameplay;
 import com.pad.connectwords.Entity.Player;
 import com.pad.connectwords.controller.GamePlayController;
 import com.pad.connectwords.service.GameplayService;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 

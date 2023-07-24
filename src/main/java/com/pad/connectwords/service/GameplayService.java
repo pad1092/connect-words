@@ -4,11 +4,11 @@ import com.pad.connectwords.ConnectWordsApplication;
 import com.pad.connectwords.Entity.Gameplay;
 import com.pad.connectwords.Entity.Message;
 import com.pad.connectwords.Entity.Player;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
