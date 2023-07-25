@@ -37,3 +37,6 @@ I. Tìm hiểu về API
 	   o. 404 NOT FOUND — lỗi này có thể được sử dụng nếu bạn đang tìm kiếm một số tài nguyên nhất định và nó không có sẵn trong hệ thống.
 	   o. 500 LỖI MÁY CHỦ NỘI BỘ — Điều này không bao giờ được đưa ra một cách rõ ràng nhưng có thể xảy ra nếu hệ thống bị lỗi.
 	   o. 502 BAD GATEWAY — lỗi này có thể được sử dụng nếu máy chủ nhận được phản hồi không hợp lệ từ máy chủ ngược dòng.
+
+II. Springboot RESTful API
+  1. Tìm hiểu các Anotation liên quan đến xây dựng RESTful API
