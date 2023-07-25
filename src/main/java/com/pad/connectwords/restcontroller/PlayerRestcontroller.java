@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1")
 
 public class PlayerRestcontroller {
