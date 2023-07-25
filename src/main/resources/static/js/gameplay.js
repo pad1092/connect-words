@@ -266,8 +266,8 @@ function checkIfValueExists(value) {
 }
 
 function changeTurn(message){
-    currPlayerName = message.fromWho.name;
-    currPlayerId = message.fromWho.id;
+    currPlayerName = message.toWhom.name;
+    currPlayerId = message.toWhom.id;
     let directionElement = $('#direction')
     directionElement.text(`${currPlayerName}'s turn!`);
     disableGameplay();
@@ -277,8 +277,7 @@ function changeTurn(message){
 
 
 function handleJoinGame(message){
-    updateAllPlayerInfor(message);
-    startGame()
+    updateAllPlayerInfor(message)
 }
 function startGame(){
     let url = PATH_API + `/gameplay/${roomId}/start`;
@@ -287,7 +286,7 @@ function startGame(){
     })
 }
 function handleStartGame(message){
-    console.log(message)
+    console.log("---START GAME---")
     currPlayerName = message.fromWho.name;
     currPlayerId = message.fromWho.id;
     countdown();

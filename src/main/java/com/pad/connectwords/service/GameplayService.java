@@ -58,6 +58,7 @@ public class GameplayService {
         gameplay.setPlayer((Player) session.getAttribute("player"));
         gameplay.setStatus("Full");
         handleSocketJoinGame(id, session);
+        handleSocketStartGame(id, session);
         return true;
     }
 
@@ -96,8 +97,13 @@ public class GameplayService {
 
     public void handleSocketStartGame(Long idGame, HttpSession session){
         Message message = new Message();
-        message.setType(Message.MesssageType.START);
-        message.setFromWho((Player)session.getAttribute("player"));
+        try {
+            Thread.sleep(1000);
+            message.setType(Message.MesssageType.START);
+            message.setFromWho((Player)session.getAttribute("player"));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         addMessageToQueue(GAMEPLAY_DES + idGame, message);
     }
 
