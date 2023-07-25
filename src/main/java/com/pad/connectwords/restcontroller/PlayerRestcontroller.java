@@ -10,8 +10,9 @@ import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin(allowCredentials = "*")
+
 public class PlayerRestcontroller {
+    @CrossOrigin(origins = "*")
     @GetMapping("/player")
     public Player getPlayer(HttpSession session){
         return (Player)session.getAttribute("player");

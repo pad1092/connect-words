@@ -9,11 +9,12 @@ import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin(allowCredentials = "*")
+
 public class HomeRestcontroller {
     @Autowired
     IndexService indexService;
 
+    @CrossOrigin(origins = "*")
     @GetMapping("new-player/{name}/{color}")
     public Player newPlayer (@PathVariable("name") String name, @PathVariable("color") String color, HttpSession session){
         session.setAttribute("player", indexService.createPlayer(name, color));
