@@ -1,0 +1,30 @@
+I. Tìm hiểu về API
+  1. API (Application Programming Interface) là một tập hợp các quy tắc và giao thức cho phép hai phần mềm khác nhau tương tác, giao tiếp với nhau. 
+     và cung cấp dữ liệu liên quan với nhau.
+  2. Các loại API: API có thể được chia làm ba loại chính: API Web, API Hệ thống, API đối tượng
+	- API Web là các giao diện truy cập qua mạng, thường sử dụng các giao thức như HTTP và RESTful để giao tiếp giữa máy chủ và trình duyệt 
+	hoặc giữa các máy chủ khác nhau.
+	- API Hệ thống cung cấp các giao diện để truy cập vào các chức năng của hệ thống điều hành hoặc các tài nguyên phần cứng của máy tính.
+	- API Đối tượng là các giao diện cung cấp bởi các đối tượng trong các ngôn ngữ lập trình hướng đối tượng, cho phép truy cập vào các phương thức 
+	và thuộc tính của chúng.
+  3. API RESTful
+	- REST (Representational State Transfer) là một kiểu kiến trúc phần mềm sử dụng trong việc thiết kế các API Web.
+	- API RESTful dựa trên các phương thức HTTP như GET, POST, PUT và DELETE để truy cập và quản lý tài nguyên qua mạng.
+	- Các tài nguyên được đại diện bằng các URL và thao tác với chúng thông qua các yêu cầu HTTP.
+  4. JSON và XML trong API:
+	- JSON (JavaScript Object Notation) và XML (eXtensible Markup Language) là hai định dạng thông dụng được sử dụng để trao đổi dữ liệu giữa ứng dụng thông qua API.
+	- JSON là một định dạng dữ liệu nhẹ, dễ đọc và dễ hiểu cho cả người và máy tính.
+	- XML cũng được sử dụng, nhưng thường nặng hơn JSON và được sử dụng ít hơn trong các ứng dụng hiện đại.
+  5. Các nguyên tắc chính của RESTful API:
+	- Sử dụng phương thức HTTP chính xác, RESTful API sử dụng các phương thức HTTP chuẩn, bao gồm:
+	   o. GET: Truy vấn dữ liệu từ máy chủ.
+	   o. POST: Tạo mới tài nguyên hoặc thực hiện một hành động mới.
+	   o. PUT: Cập nhật thông tin của tài nguyên đã tồn tại.
+	   o. DELETE: Xóa tài nguyên.
+	- Sử dụng danh từ số nhiều và không sử dụng động từ để đặt tên cho URL
+	- Mỗi tài nguyên trong RESTful API được địa diện bởi một URL duy nhất
+	   o. Ví dụ: https://api.host.com/users, https://api.host.com/products. 
+	- Sử dụng cấu trúc phân cấp URL: sử dụng cấu trúc phân cấp URL để biểu thị mối quan hệ giữa tài nguyên
+	   o. Ví dụ: GET /users/123/cars để lấy danh sách xe của users 123 hoặc lấy một xe cụ thể GET /users/123/cars/5
+	   o. Một resource chỉ nên liên kết tối đa 2 đối tượng, với các API truy vấn dữ liệu với nhiều parameter thì sử dung filter với cú pháp sau
+	   GET /users/12/orders/5?year=2023&month=7&sort=desc
