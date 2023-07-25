@@ -14,18 +14,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin(allowCredentials = "*")
 public class GameplayRestcontroller {
     @Autowired
     GameplayService gameplayService;
-    @CrossOrigin(origins = "*")
     @GetMapping("/newgame")
     public Long newGame(HttpSession session){
         Gameplay gameplay = gameplayService.createNewGame((Player) session.getAttribute("player"));
         return gameplay.getId();
     }
     @GetMapping("/quit-game/{gameId}")
-    @CrossOrigin(origins = "*")
     public boolean quitGame(HttpSession session, @PathVariable("gameId") Long idGame){
         System.out.println("quit game");
         Player player = (Player) session.getAttribute("player");
@@ -38,25 +35,21 @@ public class GameplayRestcontroller {
     }
 
     @GetMapping("/join-game/{id}")
-    @CrossOrigin(origins = "*")
     public boolean joinGame(@PathVariable("id") Long idGame, HttpSession session){
         return gameplayService.joinGame(idGame, session);
     }
     @GetMapping("/gameplay/{id}/start")
-    @CrossOrigin(origins = "*")
     public void startGame(@PathVariable("id") Long idGame, HttpSession session) throws InterruptedException {
         Thread.sleep(1000);
         System.out.println("Sleep");
         gameplayService.handleSocketStartGame(idGame, session);
     }
     @PostMapping("/gameplay/{id}/chat")
-    @CrossOrigin(origins = "*")
     public void chatGame(@PathVariable("id") Long gameId, @RequestBody String content , HttpSession session){
         gameplayService.handleChat(gameId, session, content);
     }
 
     @PostMapping("/gameplay/{id}/words")
-    @CrossOrigin(origins = "*")
     public void wordsGame(@PathVariable("id") Long gameId, @RequestBody String content , HttpSession session){
         gameplayService.handleWords(gameId, session, content);
     }

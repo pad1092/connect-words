@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/api/v1")
 
 public class PlayerRestcontroller {
-    @CrossOrigin(origins = "*")
     @GetMapping("/player")
     public Player getPlayer(HttpSession session){
         return (Player)session.getAttribute("player");
