@@ -28,3 +28,12 @@ I. Tìm hiểu về API
 	   o. Ví dụ: GET /users/123/cars để lấy danh sách xe của users 123 hoặc lấy một xe cụ thể GET /users/123/cars/5
 	   o. Một resource chỉ nên liên kết tối đa 2 đối tượng, với các API truy vấn dữ liệu với nhiều parameter thì sử dung filter với cú pháp sau
 	   GET /users/12/orders/5?year=2023&month=7&sort=desc
+	- Sử dụng các trạng thái HTTP (HTTP status codes) và error message: RESTful API sử dụng các mã trạng thái HTTP phù hợp để biểu thị kết quả của yêu cầu.
+	   o. 200 OK — Đây là mã HTTP được sử dụng phổ biến nhất để cho biết rằng thao tác được thực hiện thành công.
+	   o. 201 TẠO — Điều này có thể được sử dụng khi bạn sử dụng phương thức POST để tạo tài nguyên mới.
+	   o. 202 ACCEPTED — Điều này có thể được sử dụng để xác nhận yêu cầu được gửi đến máy chủ.
+	   o. 400 BAD YÊU CẦU — Điều này có thể được sử dụng khi xác thực đầu vào phía máy khách không thành công.
+	   o. 401 UNAUTHORIZED/403 FORBIDDEN — Điều này có thể được sử dụng nếu người dùng hoặc hệ thống không được phép thực hiện một số thao tác nhất định.
+	   o. 404 NOT FOUND — lỗi này có thể được sử dụng nếu bạn đang tìm kiếm một số tài nguyên nhất định và nó không có sẵn trong hệ thống.
+	   o. 500 LỖI MÁY CHỦ NỘI BỘ — Điều này không bao giờ được đưa ra một cách rõ ràng nhưng có thể xảy ra nếu hệ thống bị lỗi.
+	   o. 502 BAD GATEWAY — lỗi này có thể được sử dụng nếu máy chủ nhận được phản hồi không hợp lệ từ máy chủ ngược dòng.
