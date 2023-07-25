@@ -79,6 +79,7 @@ function connectSocket(){
         stompClient.subscribe("/gameplay/room/" + roomId, function (messageOutput){
             handleOutput (messageOutput.body);
         })
+        startGame();
     });
 }
 
