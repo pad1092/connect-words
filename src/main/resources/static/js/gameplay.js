@@ -194,11 +194,31 @@ function sendWordsToServer(){
     if (checkIfValueExists(message) == true)
         alert(`'${message}' already exits`);
     else if (checkValidWords(message) == false){
+        return;
         alert("Enter valid value, please")
+    }
+    else if (checkStartLetter(message) == false){
+        let lastWord = getLastWord();
+        alert(`You must start with '${message.charAt(message.length-1)}' letter`)
     }
     else if (checkValidWords(message) == true) {
         let url = PATH_API + `/gameplay/${roomId}/words`
         sendPostRequestToServer (url, message);
+    }
+}
+function checkStartLetter(message){
+    if (getLastWord() == undefined || getLastWord() == null)
+        return true;
+
+    if (message.charAt(message.length-1) != getLastWord().charAt(0))
+        return false;
+
+    return true;
+}
+function getLastWord(){
+    let lastElm = document.querySelector('#gameplay-content .gameplay-word:last-child');
+    if (lastElm != null || lastElm != undefined) {
+        return lastElm.querySelector('span').textContent;
     }
 }
 function addNewWords(message){
