@@ -97,7 +97,7 @@ function handleOutput(messageOutput) {
             handleChat(jsonMessage);
             break;
         case "START":
-            handleStartGame();
+            handleStartGame(jsonMessage);
             break;
     }
 }
@@ -287,6 +287,7 @@ function startGame(){
     })
 }
 function handleStartGame(message){
+    console.log(message)
     currPlayerName = message.fromWho.name;
     currPlayerId = message.fromWho.id;
     countdown();
