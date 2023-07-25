@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1")
 
 public class HomeRestcontroller {
