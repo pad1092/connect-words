@@ -211,7 +211,7 @@ function addNewWords(message){
     gameplayInputElm.value = '';
     gameplayContentElm.scrollTop = gameplayContentElm.scrollHeight
 
-    changeTurn();
+    changeTurn(message);
 
 }
 
@@ -265,9 +265,9 @@ function checkIfValueExists(value) {
     return false;
 }
 
-function changeTurn(){
-    currPlayerName = currPlayerName == firstPlayerName ? secondPlayerName : firstPlayerName;
-    currPlayerId = currPlayerId == firstPlayerId ? secondPlayerId : firstPlayerId;
+function changeTurn(message){
+    currPlayerName = message.fromWho.name;
+    currPlayerId = message.fromWho.id;
     let directionElement = $('#direction')
     directionElement.text(`${currPlayerName}'s turn!`);
     disableGameplay();
@@ -286,9 +286,9 @@ function startGame(){
 
     })
 }
-function handleStartGame(){
-    currPlayerName = firstPlayerName;
-    currPlayerId = firstPlayerId;
+function handleStartGame(message){
+    currPlayerName = message.fromWho.name;
+    currPlayerId = message.fromWho.id;
     countdown();
 }
 function countdown() {
@@ -311,7 +311,7 @@ function disableGameplay(){
 function enableGameplay(){
     console.log("your id ", youselfId)
     console.log("curr palyer id ", currPlayerId)
-    if (youselfId === currPlayerId){
+    if (youselfId == currPlayerId){
         gameplayInputElm.disabled = false;
         document.getElementById("gameplay-btn").disabled = false;
     }

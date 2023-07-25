@@ -39,10 +39,10 @@ public class GameplayRestcontroller {
         return gameplayService.joinGame(idGame, session);
     }
     @GetMapping("/gameplay/{id}/start")
-    public void startGame(@PathVariable("id") Long idGame) throws InterruptedException {
+    public void startGame(@PathVariable("id") Long idGame, HttpSession session) throws InterruptedException {
         Thread.sleep(1000);
         System.out.println("Sleep");
-        gameplayService.handleSocketStartGame(idGame);
+        gameplayService.handleSocketStartGame(idGame, session);
     }
     @PostMapping("/gameplay/{id}/chat")
     public void chatGame(@PathVariable("id") Long gameId, @RequestBody String content , HttpSession session){

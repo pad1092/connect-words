@@ -94,10 +94,10 @@ public class GameplayService {
         addMessageToQueue(GAMEPLAY_DES + idGame, message);
     }
 
-    public void handleSocketStartGame(Long idGame){
+    public void handleSocketStartGame(Long idGame, HttpSession session){
         Message message = new Message();
         message.setType(Message.MesssageType.START);
-
+        message.setFromWho((Player)session.getAttribute("player"));
         addMessageToQueue(GAMEPLAY_DES + idGame, message);
     }
 
