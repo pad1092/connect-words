@@ -6,6 +6,10 @@ const gameplayInputElm = document.getElementById("gameplay-input")
 
 const PATH_API = "/api/v1"
 const roomId = $('#room-id').text()
+
+const turnSound = new Audio("/sound/turn.wav")
+const mistakeSound = new Audio("/sound/turn.wav")
+
 var stompClient = null;
 
 var firstPlayerId = null;
@@ -119,6 +123,7 @@ function handleChat(message){
 }
 function sendMessageToServer() {
     let message = chatInputElm.value;
+    chatInputElm.value = '';
 
     if (checkValidMessage(message) == true) {
         let url = PATH_API + `/gameplay/${roomId}/chat`
@@ -134,7 +139,6 @@ function addNewMessage(message){
     newChatElement.innerHTML = createChatElm(getCurrentTime(), message.fromWho.name, message.message, '#'+message.fromWho.color)
     chatContentElm.appendChild(newChatElement);
 
-    chatInputElm.value = '';
     chatContentElm.scrollTop = chatContentElm.scrollHeight
 }
 
@@ -191,12 +195,16 @@ function handleWords(message){
 function sendWordsToServer(){
     let message = gameplayInputElm.value;
 
-    if (checkIfValueExists(message) == true)
+    if (checkIfValueExists(message) == true) {
+        mistakeSound.play();
         alert(`'${message}' already exits`);
+    }
     else if (checkValidWords(message) == false){
+        mistakeSound.play();
         alert("Enter valid value, please")
     }
     else if (checkStartLetter(message) == false){
+        mistakeSound.play();
         let lastWord = getLastWord();
         alert(`You must start with '${lastWord.charAt(lastWord.length-1)}' letter`)
     }
@@ -336,5 +344,6 @@ function enableGameplay(){
     if (youselfId == currPlayerId){
         gameplayInputElm.disabled = false;
         document.getElementById("gameplay-btn").disabled = false;
+        turnSound.play();
     }
 }
