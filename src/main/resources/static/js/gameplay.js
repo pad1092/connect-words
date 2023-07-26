@@ -199,7 +199,7 @@ function sendWordsToServer(){
     }
     else if (checkStartLetter(message) == false){
         let lastWord = getLastWord();
-        alert(`You must start with '${message.charAt(message.length-1)}' letter`)
+        alert(`You must start with '${lastWord.charAt(lastWord.length-1)}' letter`)
     }
     else if (checkValidWords(message) == true) {
         let url = PATH_API + `/gameplay/${roomId}/words`
@@ -207,10 +207,11 @@ function sendWordsToServer(){
     }
 }
 function checkStartLetter(message){
-    if (getLastWord() == undefined || getLastWord() == null)
+    let lastWord = getLastWord();
+    if (lastWord() == undefined || lastWord() == null)
         return true;
 
-    if (message.charAt(message.length-1) != getLastWord().charAt(0))
+    if (lastWord.charAt(lastWord.length-1) != message().charAt(0))
         return false;
 
     return true;
