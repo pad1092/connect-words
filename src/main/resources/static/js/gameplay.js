@@ -8,7 +8,7 @@ const PATH_API = "/api/v1"
 const roomId = $('#room-id').text()
 
 const turnSound = new Audio("/sound/turn.wav")
-const mistakeSound = new Audio("/sound/turn.wav")
+const mistakeSound = new Audio("/sound/wrong.wav")
 
 var stompClient = null;
 
