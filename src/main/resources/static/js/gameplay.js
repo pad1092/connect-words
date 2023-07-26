@@ -208,7 +208,7 @@ function sendWordsToServer(){
 }
 function checkStartLetter(message){
     let lastWord = getLastWord();
-    if (lastWord() == undefined || lastWord() == null)
+    if (lastWord == undefined || lastWord == null)
         return true;
 
     if (lastWord.charAt(lastWord.length-1) != message().charAt(0))
