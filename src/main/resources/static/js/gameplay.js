@@ -9,7 +9,7 @@ const roomId = $('#room-id').text()
 
 const turnSound = new Audio("/sound/turn.wav")
 const mistakeSound = new Audio("/sound/wrong.wav")
-const bingbongSound = new Audio("/sound/bingbong.wav")
+const bingbongSound = new Audio("/sound/bingbong.mp3")
 
 var stompClient = null;
 
