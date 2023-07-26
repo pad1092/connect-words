@@ -194,7 +194,6 @@ function sendWordsToServer(){
     if (checkIfValueExists(message) == true)
         alert(`'${message}' already exits`);
     else if (checkValidWords(message) == false){
-        return;
         alert("Enter valid value, please")
     }
     else if (checkStartLetter(message) == false){
@@ -207,11 +206,12 @@ function sendWordsToServer(){
     }
 }
 function checkStartLetter(message){
+
     let lastWord = getLastWord();
     if (lastWord == undefined || lastWord == null)
         return true;
 
-    if (lastWord.charAt(lastWord.length-1) != message().charAt(0))
+    if (lastWord.charAt(lastWord.length-1) != message.charAt(0))
         return false;
 
     return true;
