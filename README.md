@@ -1,7 +1,7 @@
-# CONNECT WORDS APPLICATION
+# WORDS CONNECTION APPLICATION
 - Link: https://cw.phamanhduc.com
   
-# Connect Words and Chat Application
+# Description
 This application allows users to play a words connection game while also providing a chat feature. 
 It is built using Spring Boot for the backend and JavaScript for the frontend, leveraging WebSocket for real-time communication between the server and clients.
 
