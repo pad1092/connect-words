@@ -13,6 +13,6 @@ It is built using Spring Boot for the backend and JavaScript for the frontend, l
 ## Technologies Used
 - **Spring Boot**: Backend framework for building the WebSocket server.
 - **Thymeleaf**: Utilized for server-side rendering in the Spring Boot backend.
-- **JavaScript**: Frontend scripting language.
+- **JavaScript**: Used StompJS library.
 - **WebSocket API**: For real-time bidirectional communication.
 - **Maven**: Project management and build tool for Java projects.
