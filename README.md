@@ -1,5 +1,5 @@
 # Springboot Websocket Simple Project
-## WORDS CONNECTION APPLICATION
+- Name: WORDS CONNECTION APPLICATION
 - Link: https://cw.phamanhduc.com
   
 # Description
