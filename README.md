@@ -1,4 +1,4 @@
-#Springboot Websocket Simple Project
+# Springboot Websocket Simple Project
 ## WORDS CONNECTION APPLICATION
 - Link: https://cw.phamanhduc.com
   
